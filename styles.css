@@ -44,6 +44,10 @@
   justify-content: center;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 .flex-col {
   flex-direction: column;
 }
