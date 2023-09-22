@@ -19,7 +19,8 @@ const data = {
   currentDay: $monday,
   time: null,
   eventInfo: null,
-  day: null
+  day: null,
+  row: null
 };
 
 $addEvent.addEventListener('click', function (event) {
@@ -50,24 +51,29 @@ $modalForm.addEventListener('submit', function (event) {
       $sunday.appendChild(renderEntry());
     }
   } else if (data.time !== null && data.eventInfo !== null) {
-    if ($modalDays.value === 'Monday') {
+    data.row.remove();
+
+    if (data.day === 'Monday') {
       $monday.appendChild(renderEntry());
-    } else if ($modalDays.value === 'Tuesday') {
+    } else if (data.day === 'Tuesday') {
       $tuesday.appendChild(renderEntry());
-    } else if ($modalDays.value === 'Wednesday') {
+    } else if (data.day === 'Wednesday') {
       $wednesday.appendChild(renderEntry());
-    } else if ($modalDays.value === 'Thursday') {
+    } else if (data.day === 'Thursday') {
       $thursday.appendChild(renderEntry());
-    } else if ($modalDays.value === 'Friday') {
+    } else if (data.day === 'Friday') {
       $friday.appendChild(renderEntry());
-    } else if ($modalDays.value === 'Saturday') {
+    } else if (data.day === 'Saturday') {
       $saturday.appendChild(renderEntry());
-    } else if ($modalDays.value === 'Sunday') {
+    } else if (data.day === 'Sunday') {
       $sunday.appendChild(renderEntry());
     }
-    $tr.replaceWith(renderEntry());
   }
   $modalForm.reset();
+  data.time = null;
+  data.eventInfo = null;
+  data.day = null;
+  data.row = null;
 });
 
 $dayOfWeek.addEventListener('change', function (event) {
@@ -144,7 +150,7 @@ $eventTable.addEventListener('click', function (event) {
     data.time = event.target.closest('tr').childNodes[0].textContent;
     data.day = event.target.closest('tbody').getAttribute('id');
     data.eventInfo = event.target.closest('tr').childNodes[1].textContent;
-
+    data.row = event.target.closest('tr');
     $modalForm[0].value = data.time;
     $modalForm[1].value = capitalize(data.day);
     $modalForm[2].value = data.eventInfo;
