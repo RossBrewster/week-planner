@@ -12,6 +12,11 @@ const $friday = document.querySelector('#friday');
 const $saturday = document.querySelector('#saturday');
 const $sunday = document.querySelector('#sunday');
 const $modalDays = document.querySelector('#event-days');
+const $dayOfWeek = document.querySelector('#dropdown-days');
+
+const data = {
+  currentDay: $monday
+};
 
 $addEvent.addEventListener('click', function (event) {
   $overlay.classList.toggle('hidden');
@@ -43,33 +48,39 @@ $modalForm.addEventListener('submit', function (event) {
   $modalForm.reset();
 });
 
+$dayOfWeek.addEventListener('change', function (event) {
+
+  showChosenDay($dayOfWeek.value);
+});
+
 function showChosenDay(day) {
-  if ($modalDays.value === 'Monday') {
-    $monday.classList.toggle('hidden');
-  } else if ($modalDays.value === 'Tuesday') {
-    $monday.classList.toggle('hidden');
-    $wednesday.classList.toggle('hidden');
-    $thursday.classList.toggle('hidden');
-    $friday.classList.toggle('hidden');
-    $saturday.classList.toggle('hidden');
-    $sunday.classList.toggle('hidden');
-
-  } else if ($modalDays.value === 'Wednesday') {
+  if (day === 'Monday') {
+    data.currentDay.classList.toggle('hidden');
+    data.currentDay = $monday;
+  } else if (day === 'Tuesday') {
+    data.currentDay.classList.toggle('hidden');
     $tuesday.classList.toggle('hidden');
-    $monday.classList.toggle('hidden');
+    data.currentDay = $tuesday;
+  } else if (day === 'Wednesday') {
+    data.currentDay.classList.toggle('hidden');
+    $wednesday.classList.toggle('hidden');
+    data.currentDay = $wednesday;
+  } else if (day === 'Thursday') {
+    data.currentDay.classList.toggle('hidden');
     $thursday.classList.toggle('hidden');
+    data.currentDay = $thursday;
+  } else if (day === 'Friday') {
+    data.currentDay.classList.toggle('hidden');
     $friday.classList.toggle('hidden');
+    data.currentDay = $friday;
+  } else if (day === 'Saturday') {
+    data.currentDay.classList.toggle('hidden');
     $saturday.classList.toggle('hidden');
+    data.currentDay = $saturday;
+  } else if (day === 'Sunday') {
+    data.currentDay.classList.toggle('hidden');
     $sunday.classList.toggle('hidden');
-
-  } else if ($modalDays.value === 'Thursday') {
-    $thursday.appendChild(renderEntry());
-  } else if ($modalDays.value === 'Friday') {
-    $friday.appendChild(renderEntry());
-  } else if ($modalDays.value === 'Saturday') {
-    $saturday.appendChild(renderEntry());
-  } else if ($modalDays.value === 'Sunday') {
-    $sunday.appendChild(renderEntry());
+    data.currentDay = $sunday;
   }
 
 }
