@@ -25,7 +25,8 @@
 }
 
 .event-table {
-  border: solid 2px;
+  border: solid 1px;
+  text-align: left;
 }
 
 tr:nth-child(odd) {
@@ -38,6 +39,32 @@ th {
   padding: 0.5rem;
 }
 
-thead:nth-child(0) {
+th {
   background-color: white;
+}
+
+.mb {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 4rem;
+}
+
+.mb-05 {
+  margin-bottom: 0.5rem;
+}
+
+.add-event {
+  border: none;
+  color: white;
+  border-radius: 5px;
+  background-color: rgb(108, 117, 123);
+  padding: 6px 8px;
+}
+
+#dropdown-days {
+  border: 0.5px solid lightgrey;
+  border-radius: 5px;
+  padding: 5px;
 }
