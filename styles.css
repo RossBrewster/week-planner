@@ -55,7 +55,7 @@
 td,
 th,
 .event-table {
-  border: solid 1px lightgray;
+  border: solid 1px gray;
   text-align: left;
   border-collapse: collapse;
 }
