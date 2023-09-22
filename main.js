@@ -2,9 +2,16 @@ const $addEvent = document.querySelector('.add-event');
 const $overlay = document.querySelector('.overlay');
 const $modalCancel = document.querySelector('#modal-cancel');
 const $modalTime = document.querySelector('#event-time');
-const $tableBody = document.querySelector('#table-body');
 const $modalEventInfo = document.querySelector('#event-info');
 const $modalForm = document.querySelector('.add-event-form');
+const $monday = document.querySelector('#monday');
+const $tuesday = document.querySelector('#tuesday');
+const $wednesday = document.querySelector('#wednesday');
+const $thursday = document.querySelector('#thursday');
+const $friday = document.querySelector('#friday');
+const $saturday = document.querySelector('#saturday');
+const $sunday = document.querySelector('#sunday');
+const $modalDays = document.querySelector('#event-days');
 
 $addEvent.addEventListener('click', function (event) {
   $overlay.classList.toggle('hidden');
@@ -17,9 +24,55 @@ $modalCancel.addEventListener('click', function (event) {
 $modalForm.addEventListener('submit', function (event) {
   event.preventDefault();
   $overlay.classList.toggle('hidden');
-  $tableBody.appendChild(renderEntry());
+  if ($modalDays.value === 'Monday') {
+    $monday.appendChild(renderEntry());
+  } else if ($modalDays.value === 'Tuesday') {
+    $tuesday.appendChild(renderEntry());
+  } else if ($modalDays.value === 'Wednesday') {
+    $wednesday.appendChild(renderEntry());
+  } else if ($modalDays.value === 'Thursday') {
+    $thursday.appendChild(renderEntry());
+  } else if ($modalDays.value === 'Friday') {
+    $friday.appendChild(renderEntry());
+  } else if ($modalDays.value === 'Saturday') {
+    $saturday.appendChild(renderEntry());
+  } else if ($modalDays.value === 'Sunday') {
+    $sunday.appendChild(renderEntry());
+  }
+
   $modalForm.reset();
 });
+
+function showChosenDay(day) {
+  if ($modalDays.value === 'Monday') {
+    $monday.classList.toggle('hidden');
+  } else if ($modalDays.value === 'Tuesday') {
+    $monday.classList.toggle('hidden');
+    $wednesday.classList.toggle('hidden');
+    $thursday.classList.toggle('hidden');
+    $friday.classList.toggle('hidden');
+    $saturday.classList.toggle('hidden');
+    $sunday.classList.toggle('hidden');
+
+  } else if ($modalDays.value === 'Wednesday') {
+    $tuesday.classList.toggle('hidden');
+    $monday.classList.toggle('hidden');
+    $thursday.classList.toggle('hidden');
+    $friday.classList.toggle('hidden');
+    $saturday.classList.toggle('hidden');
+    $sunday.classList.toggle('hidden');
+
+  } else if ($modalDays.value === 'Thursday') {
+    $thursday.appendChild(renderEntry());
+  } else if ($modalDays.value === 'Friday') {
+    $friday.appendChild(renderEntry());
+  } else if ($modalDays.value === 'Saturday') {
+    $saturday.appendChild(renderEntry());
+  } else if ($modalDays.value === 'Sunday') {
+    $sunday.appendChild(renderEntry());
+  }
+
+}
 
 function renderEntry() {
   const $tr = document.createElement('tr');
