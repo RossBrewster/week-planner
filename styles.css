@@ -4,6 +4,30 @@
   padding: 0 1.5rem;
 }
 
+.overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.75);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.hidden {
+  display: hidden !important;
+}
+
 .column-full {
   flex-basis: 100%;
 }
@@ -24,9 +48,12 @@
   display: flex;
 }
 
+td,
+th,
 .event-table {
-  border: solid 1px;
+  border: solid 1px lightgray;
   text-align: left;
+  border-collapse: collapse;
 }
 
 tr:nth-child(odd) {
@@ -35,7 +62,6 @@ tr:nth-child(odd) {
 
 td,
 th {
-  border: 1px solid lightgray;
   padding: 0.5rem;
 }
 
