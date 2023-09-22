@@ -29,7 +29,7 @@
 }
 
 .hidden {
-  display: hidden !important;
+  display: none !important;
 }
 
 .column-full {
@@ -98,4 +98,24 @@ th {
   border: 0.5px solid lightgrey;
   border-radius: 5px;
   padding: 5px;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+#modal-cancel {
+  background-color: rgb(108, 117, 123);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 8px;
+}
+
+#modal-confirm {
+  background-color: #008001;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 8px;
 }
