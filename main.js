@@ -13,9 +13,13 @@ const $saturday = document.querySelector('#saturday');
 const $sunday = document.querySelector('#sunday');
 const $modalDays = document.querySelector('#event-days');
 const $dayOfWeek = document.querySelector('#dropdown-days');
+const $eventTable = document.querySelector('.event-table');
 
 const data = {
-  currentDay: $monday
+  currentDay: $monday,
+  time: null,
+  eventInfo: null,
+  day: null
 };
 
 $addEvent.addEventListener('click', function (event) {
@@ -29,22 +33,40 @@ $modalCancel.addEventListener('click', function (event) {
 $modalForm.addEventListener('submit', function (event) {
   event.preventDefault();
   $overlay.classList.toggle('hidden');
-  if ($modalDays.value === 'Monday') {
-    $monday.appendChild(renderEntry());
-  } else if ($modalDays.value === 'Tuesday') {
-    $tuesday.appendChild(renderEntry());
-  } else if ($modalDays.value === 'Wednesday') {
-    $wednesday.appendChild(renderEntry());
-  } else if ($modalDays.value === 'Thursday') {
-    $thursday.appendChild(renderEntry());
-  } else if ($modalDays.value === 'Friday') {
-    $friday.appendChild(renderEntry());
-  } else if ($modalDays.value === 'Saturday') {
-    $saturday.appendChild(renderEntry());
-  } else if ($modalDays.value === 'Sunday') {
-    $sunday.appendChild(renderEntry());
+  if (data.time === null && data.eventInfo === null) {
+    if ($modalDays.value === 'Monday') {
+      $monday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Tuesday') {
+      $tuesday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Wednesday') {
+      $wednesday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Thursday') {
+      $thursday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Friday') {
+      $friday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Saturday') {
+      $saturday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Sunday') {
+      $sunday.appendChild(renderEntry());
+    }
+  } else if (data.time !== null && data.eventInfo !== null) {
+    if ($modalDays.value === 'Monday') {
+      $monday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Tuesday') {
+      $tuesday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Wednesday') {
+      $wednesday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Thursday') {
+      $thursday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Friday') {
+      $friday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Saturday') {
+      $saturday.appendChild(renderEntry());
+    } else if ($modalDays.value === 'Sunday') {
+      $sunday.appendChild(renderEntry());
+    }
+    $tr.replaceWith(renderEntry());
   }
-
   $modalForm.reset();
 });
 
@@ -88,10 +110,8 @@ function showChosenDay(day) {
 function renderEntry() {
   const $tr = document.createElement('tr');
   const $td = document.createElement('td');
-  const $p = document.createElement('p');
   const $textContent = document.createTextNode($modalTime.value);
   const $tdTwo = document.createElement('td');
-  const $pTwo = document.createElement('p');
   const $textContentTwo = document.createTextNode($modalEventInfo.value);
   const $tdThree = document.createElement('td');
   const $row = document.createElement('div');
@@ -105,11 +125,9 @@ function renderEntry() {
   $buttonDelete.setAttribute('class', 'delete-button');
 
   $tr.appendChild($td);
-  $td.appendChild($p);
-  $p.appendChild($textContent);
+  $td.appendChild($textContent);
   $tr.appendChild($tdTwo);
-  $tdTwo.appendChild($pTwo);
-  $pTwo.appendChild($textContentTwo);
+  $tdTwo.appendChild($textContentTwo);
   $tr.appendChild($tdThree);
   $tdThree.appendChild($row);
   $row.appendChild($buttonEdit);
@@ -118,4 +136,23 @@ function renderEntry() {
   $buttonDelete.appendChild($delete);
 
   return $tr;
+}
+
+$eventTable.addEventListener('click', function (event) {
+  if (event.target.className === 'edit-button') {
+    $overlay.classList.toggle('hidden');
+    data.time = event.target.closest('tr').childNodes[0].textContent;
+    data.day = event.target.closest('tbody').getAttribute('id');
+    data.eventInfo = event.target.closest('tr').childNodes[1].textContent;
+
+    $modalForm[0].value = data.time;
+    $modalForm[1].value = capitalize(data.day);
+    $modalForm[2].value = data.eventInfo;
+  }
+});
+
+function capitalize(string) {
+  const firstLetter = string[0].toUpperCase();
+  const existingWord = string.slice(1).toLowerCase();
+  return firstLetter + existingWord;
 }
