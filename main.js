@@ -14,12 +14,14 @@ $modalCancel.addEventListener('click', function (event) {
   $overlay.classList.toggle('hidden');
 });
 
-$modalConfirm.addEventListener('click', function (event) {
+$modalConfirm.addEventListener('submit', function (event) {
   $overlay.classList.toggle('hidden');
   $tableBody.appendChild(renderEntry());
+  event.preventDefault();
 });
 
 function renderEntry() {
+  console.log('hello');
   const $tr = document.createElement('tr');
   const $td = document.createElement('td');
   const $p = document.createElement('p');
