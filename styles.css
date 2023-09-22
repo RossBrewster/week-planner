@@ -119,3 +119,19 @@ th {
   border-radius: 5px;
   padding: 6px 8px;
 }
+
+.edit-button {
+  background-color: blue;
+  border-radius: 5px;
+  padding: 4px;
+  border: none;
+  color: white;
+}
+
+.delete-button {
+  background-color: red;
+  border-radius: 5px;
+  padding: 4px;
+  border: none;
+  color: white;
+}
