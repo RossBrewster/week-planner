@@ -23,3 +23,21 @@
 .flex {
   display: flex;
 }
+
+.event-table {
+  border: solid 2px;
+}
+
+tr:nth-child(odd) {
+  background-color: lightgray;
+}
+
+td,
+th {
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+}
+
+thead:nth-child(0) {
+  background-color: white;
+}
