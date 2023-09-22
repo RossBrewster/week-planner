@@ -2,9 +2,9 @@ const $addEvent = document.querySelector('.add-event');
 const $overlay = document.querySelector('.overlay');
 const $modalCancel = document.querySelector('#modal-cancel');
 const $modalConfirm = document.querySelector('#modal-confirm');
-const $modalDays = document.querySelector('#event-days option:checked');
+const $modalTime = document.querySelector('#event-time option:checked');
 const $tableBody = document.querySelector('#table-body');
-const $modalEventInfo = document.querySelector('#event-info option:checked');
+const $modalEventInfo = document.querySelector('#event-info');
 
 $addEvent.addEventListener('click', function (event) {
   $overlay.classList.toggle('hidden');
@@ -15,15 +15,15 @@ $modalCancel.addEventListener('click', function (event) {
 });
 
 $modalConfirm.addEventListener('click', function (event) {
+  $overlay.classList.toggle('hidden');
   $tableBody.appendChild(renderEntry());
 });
 
 function renderEntry() {
-
   const $tr = document.createElement('tr');
   const $td = document.createElement('td');
   const $p = document.createElement('p');
-  const $textContent = document.createTextNode($modalDays.value);
+  const $textContent = document.createTextNode($modalTime.value);
   const $tdTwo = document.createElement('td');
   const $pTwo = document.createElement('p');
   const $textContentTwo = document.createTextNode($modalEventInfo.value);
@@ -45,5 +45,4 @@ function renderEntry() {
   $tdThree.appendChild($buttonDelete);
 
   return $tr;
-
 }
